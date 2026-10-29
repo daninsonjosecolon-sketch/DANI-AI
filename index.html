@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DANI AI</title>
+    <link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#020611">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="pantalla">
+
+        <div class="nucleo" onclick="activarIA()">
+    <div class="ia"></div>
+    <div class="anillo"></div>
+</div>
+
+        <h1>DANI AI</h1>
+
+<p id="mensajeInicio">
+Preparando un mensaje especial...
+</p>
+<div class="estado">
+    <span>● SISTEMA ONLINE</span>
+    <span id="reloj">00:00:00</span>
+</div>
+
+<div id="chat"></div>
+
+<div class="chat">
+    <input
+        id="pregunta"
+        type="text"
+        placeholder="Escribe un mensaje..."
+        autocomplete="off"
+    >
+
+    <button id="enviar">ENVIAR</button>
+</div>
+    </div>
+
+    <script src="memoria.js"></script>
+<script src="script.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./service-worker.js")
+        .then(() => console.log("DANI AI está lista"))
+        .catch(error => console.error("Error:", error));
+    });
+  }
+</script>
+</body>
+</html>
