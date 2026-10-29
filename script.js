@@ -51,6 +51,7 @@ function agregarMensaje(texto, clase){
 
 }
 
+
 function ejecutarComando(){
 
     const comando = pregunta.value.trim();
@@ -63,36 +64,70 @@ function ejecutarComando(){
 
     let respuestaIA = "";
 
-    const texto = comando.toLowerCase();
+    // Normalizar pregunta
+    const texto = comando
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[¿?¡!,.;:]/g, "")
+        .trim();
 
-    if(texto.includes("hola")){
+    // Detectar preguntas sobre el creador
+    const preguntaCreador =
+        /(quien|como|cual|nombre).*(creo|creador|programo|desarrollo|invento|construyo)/.test(texto) ||
+        /(creador|creo|programo|desarrollo|invento).*(quien|nombre|daninson)/.test(texto) ||
+        texto.includes("quien esta detras de dani ai") ||
+        texto.includes("quien te hizo");
+
+    // Detectar preguntas sobre la novia
+    const preguntaNovia =
+        /(tienes|tiene|hay|existe).*(novia|pareja)/.test(texto) ||
+        /(novia|pareja).*(tienes|tiene|creador|daninson)/.test(texto) ||
+        texto.includes("quien es ruth") ||
+        texto.includes("quien es la novia") ||
+        texto.includes("como se llama la novia") ||
+        texto.includes("como se llama su pareja");
+
+    if(preguntaCreador){
+
+        respuestaIA = "⚡ Fui creado por Daninson José Colón, un joven con grandes sueños, disciplina y pasión por la tecnología. Soy el resultado de su creatividad, esfuerzo y deseo de construir algo extraordinario.";
+
+    }
+
+    else if(preguntaNovia){
+
+        respuestaIA = "❤️ ¡Claro que sí! Mi creador, Daninson José Colón, tiene novia. Su nombre es Ruth, una persona muy especial para él.";
+
+    }
+
+    else if(texto.includes("hola") || texto.includes("buenas") || texto.includes("buenos dias") || texto.includes("buenas tardes") || texto.includes("buenas noches")){
 
         respuestaIA = "👋 Hola. Me alegra mucho verte.";
 
     }
 
     else if(
-    texto.includes("triste") ||
-    texto.includes("mal") ||
-    texto.includes("deprimida") ||
-    texto.includes("llorar") ||
-    texto.includes("llorando")
-){
+        texto.includes("triste") ||
+        texto.includes("mal") ||
+        texto.includes("deprimida") ||
+        texto.includes("llorar") ||
+        texto.includes("llorando")
+    ){
 
-    respuestaIA = "💙 Siento que estés pasando por un momento difícil. Puedes contarme lo que quieras.";
+        respuestaIA = "💙 Siento que estés pasando por un momento difícil. Puedes contarme lo que quieras.";
 
-}
+    }
 
-else if(
-    texto.includes("feliz") ||
-    texto.includes("contenta") ||
-    texto.includes("bien") ||
-    texto.includes("alegre")
-){
+    else if(
+        texto.includes("feliz") ||
+        texto.includes("contenta") ||
+        texto.includes("bien") ||
+        texto.includes("alegre")
+    ){
 
-    respuestaIA = "🥹 Me alegra mucho saber que estás feliz.";
+        respuestaIA = "🥹 Me alegra mucho saber que estás feliz.";
 
-}
+    }
 
     else if(texto.includes("gracias")){
 
@@ -112,9 +147,10 @@ else if(
 
     },700);
 
-    pregunta.value="";
+    pregunta.value = "";
 
 }
+
 
 botonEnviar.addEventListener("click", ejecutarComando);
 
