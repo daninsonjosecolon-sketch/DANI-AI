@@ -1,5 +1,5 @@
 const texto =
-"Hola. Soy DANI AI.\nDaninson me creó para acompañarte cuando él no pueda responder de inmediato.\nNo soy él, pero fui construido con el cariño, las palabras y los mensajes que quiso dejar para ti.\n💙 Bienvenida.";
+"Hola Ruth. Soy DANI AI.\nDaninson me creó para acompañarte cuando él no pueda responder de inmediato.\nNo soy él, pero fui construido con el cariño, las palabras y los mensajes que quiso dejar para ti.\n💙 Bienvenida.";
 
 let i = 0;
 
