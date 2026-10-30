@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "dani-ai-v6";
+const CACHE_NAME = "dani-ai-v7";
 
 self.addEventListener("install", (event) => {
     self.skipWaiting();
