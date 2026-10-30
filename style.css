@@ -326,3 +326,6 @@ margin-top:10px;
         flex-shrink: 0;
     }
 }
+.pantalla p {
+    text-align: center;
+}
